@@ -99,3 +99,4 @@ class login {
 }
 
 $login = new login;
+$login->timeout();
