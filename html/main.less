@@ -18,10 +18,9 @@ img {
 .header {
 	padding: 2em 1em 1.2em;
 	background: darken(#fff, 10%);
+	border-top: 1px solid darken(#fff, 20%);
 	border-bottom: 1px solid darken(#fff, 20%);
-	&.login {
-		padding: 3em 0 2em;
-	}
+	margin-bottom: 30px;
 	.navbar {
 		margin-bottom: 0px;
 	}
@@ -31,6 +30,26 @@ img {
 }
 
 .copyright {
-	padding:1em 0;
+	padding: 1em 1em;
 	font-size: 14px;
+}
+
+.event {
+	img {
+		margin-bottom: 30px;
+	}
+	.event-information {
+		.fa {
+			padding-right: 10px;
+		}
+	}
+
+	.tickets {
+		.ticket-label {
+			width: 50%;
+		}
+		.ticket-price {
+			width: 30%;
+		}
+	}
 }

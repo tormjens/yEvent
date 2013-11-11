@@ -6,6 +6,7 @@
 		
 		<link href="../assets/third-party/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="../assets/third-party/flat-ui/css/flat-ui.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css" rel="stylesheet">
 		<link href="main.css" rel="stylesheet">
 
 		<!--[if lt IE 9]>
@@ -56,114 +57,70 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container event">
 			<div class="jumbotron">
 				<h1>Bruce Breece Jazz Quartett</h1>
 				<p>A sexy and jazz-filled evening for the jazz lover.</p>
-				<p><a class="btn btn-primary btn-lg" role="button">Purchase your ticket</a></p>
 			</div>
 
 		    <div class="row">
-				
-			    <div class="col-md-4">
-				    <div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">New Events</h3>
-						</div>
-						<div class="panel-body">
-							<div class="list-group">
+		    	<div class="col-md-8">
 
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Concert</h6>
-									<p class="list-group-item-text">
-										<span class="fui-time"></span>
-										October 10th 2013
-									</p>
-								</a>
+		    	<div class="panel panel-default">
+					<!-- Default panel contents -->
+					<div class="panel-heading">Ticket Types</div>
 
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Concert</h6>
-									<p class="list-group-item-text">
-										<span class="fui-time"></span>
-										October 10th 2013
-									</p>
-								</a>
-
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Concert</h6>
-									<p class="list-group-item-text">
-										<span class="fui-time"></span>
-										October 10th 2013
-									</p>
-								</a>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			    <div class="col-md-4">
-				    <div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">My Tickets</h3>
-						</div>
-						<div class="panel-body">
-							<div class="list-group">
-
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Josh Groban</h6>
-									<p class="list-group-item-text">
-										<span class="fui-time"></span>
-										October 28th 2013
-									</p>
-								</a>
-
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">The Gathering</h6>
-									<p class="list-group-item-text">
-										<span class="fui-time"></span>
-										October 30th 2013
-									</p>
-								</a>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			    <div class="col-md-4">
-				    <div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Recent News</h3>
-						</div>
-						<div class="panel-body">
-							<div class="list-group">
-
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Enjoy time</h6>
-									<p class="list-group-item-text">
-										A brand new concert lorem lorem.
-									</p>
-								</a>
-
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Enjoy time</h6>
-									<p class="list-group-item-text">
-										A brand new concert lorem lorem.
-									</p>
-								</a>
-
-								<a href="#" class="list-group-item">
-									<h6 class="list-group-item-heading">Enjoy time</h6>
-									<p class="list-group-item-text">
-										A brand new concert lorem lorem.
-									</p>
-								</a>
-
-							</div>
-						</div>
-					</div>
+					<!-- Table -->
+					<table class="table tickets">
+						<thead>
+							<tr>
+								<th class="ticket-label">
+									Label
+								</th>
+								<th class="ticket-price">
+									Price
+								</th>
+								<th class="ticket-action">
+									Action
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Adult Ticket</td>
+							<td>49 USD</td>
+							<td>
+								<button type="button" class="btn btn-xs btn-success palette-emerald">
+									<span class="glyphicon glyphicon-plus"></span> Add to Cart
+								</button>
+							</td>
+						</tr>
+						</tbody>
+					</table>
 				</div>
 
+		    	</div>
+				<div class="col-md-4 event-information">
+		    		<img src="http://lorempixel.com/output/city-q-c-383-354-2.jpg" alt="exaple-image" class="img-rounded img-responsive">
+		    		<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Event Information</h3>
+						</div>
+						
+						<ul class="list-group">
+							<li class="list-group-item">
+								<i class="fa fa-calendar-o"></i> October 20th 2013
+							</li>
+							<li class="list-group-item">
+								<i class="fa fa-home"></i> 10:00
+							</li>
+							<li class="list-group-item">
+								<i class="fa fa-clock-o"></i> October 20th 2013
+							</li>
+						</ul>
 
+					</div>
+		    	</div>
 			</div><!-- row -->
 
 			<div class="copyright col-md-12">
