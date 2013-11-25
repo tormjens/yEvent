@@ -14,7 +14,6 @@ if(!class_exists('yEventBackend')) {
 			add_action(	'init', array($this, 'post_types') );
 			add_filter( 'post_updated_messages', array($this, 'post_types_messages') );
 			add_action( 'admin_menu', array($this, 'admin_menu_separator') );
-			add_action( 'admin_menu', array($this, 'admin_menu') );
 
 		}
 
@@ -22,12 +21,6 @@ if(!class_exists('yEventBackend')) {
 		 * Admin Menu
 		 * @since 	0.1
 		 */
-
-		public function admin_menu() {
-
-			add_menu_page( __('yEvent Overview', 'yevent'), 'yEvent', 'yevent_manage', 'yevent/main.php', array($this, 'admin_page_main'), PLUGIN_URL . '/assets/images/ticket-small.png', 51 );
-
-		}
 
 		public function admin_menu_separator() {
 			$this->add_admin_menu_separator(50);
@@ -165,7 +158,7 @@ if(!class_exists('yEventBackend')) {
 
 	}
 
-	$yEventBackend = new yEventBackend();
+	new yEventBackend;
 
 }
 

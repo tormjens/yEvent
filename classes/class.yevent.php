@@ -46,7 +46,7 @@ if(!class_exists('yEvent')) {
 		 */
 
 		public function plugin_install() {
-
+			
 			// get the administrator role
 			$role = get_role( 'administrator' );
 

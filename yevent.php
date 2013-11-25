@@ -46,6 +46,7 @@ require_once( PLUGIN_PATH . '/classes/class.ticket.php' ); // ticket handling
 require_once( PLUGIN_PATH . '/classes/class.events.php'); // event handling
 require_once( PLUGIN_PATH . '/classes/class.payment.php'); // payment handling
 require_once( PLUGIN_PATH . '/classes/class.backend.php'); // the backend
+require_once( PLUGIN_PATH . '/classes/class.adminpages.php' ); // the admin pages
 
 /**
  * Activation/deactivation of the plugin
