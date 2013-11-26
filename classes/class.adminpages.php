@@ -19,6 +19,13 @@ class yEventAdmin extends AdminPageFramework {
 				'strScreenIcon' => 'options-general',
 				'strCapability' => 'yevent_manage',
 				'numOrder' => 1,
+			),
+			array(
+				'strPageTitle' => __('Payment', 'yevent'),
+				'strPageSlug' => 'yevent_payment',
+				'strScreenIcon' => 'options-general',
+				'strCapability' => 'yevent_manage',
+				'numOrder' => 1,
 			)
 		);
 				
@@ -173,8 +180,24 @@ class yEventAdmin extends AdminPageFramework {
 					'event_venue' => __('Event Venue', 'yevent'), 
 					'event_date' => __('Event Date', 'yevent'), 
 					'event_time' => __('Event Time', 'yevent'), 
-				)
-			),
+				),
+				'vDefault' => array(
+					'ticket_name', 'ticket_number', 'event_name', 'event_venue', 'event_date', 'event_time'
+				),
+			),		
+			array(	// Rich Text Editors
+				'strFieldID' => 'ticket_text',
+				'strSectionID' => 'tickets',
+				'strTitle' => __('Text/disclaimer on each ticket page', 'yevent'),
+				'strType' => 'textarea',
+				'vLabel' => array(
+					'custom' => '',
+				),
+				'vRich' => array( 
+					'custom' => array( 'media_buttons' => false, 'tinymce' => false ),	
+				),
+				'vRows' => 10,
+			),	
 			array()
 		);
 
