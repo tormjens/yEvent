@@ -5,6 +5,15 @@ if ( ! class_exists( 'AdminPageFramework' ) )
     
 class yEventAdmin extends AdminPageFramework {
 
+	public function currencies() {
+
+		$currencies = file_get_contents( PLUGIN_PATH . '/assets/json/currencies.json' );
+		$currencies = json_decode($currencies);
+		$currencies = get_object_vars($currencies);
+		
+		return $currencies;
+	}
+
     public function setUp() {
 
 		$this->setRootMenuPage( 
@@ -51,6 +60,11 @@ class yEventAdmin extends AdminPageFramework {
 				'strPageSlug'	=> 'yevent_settings',
 				'strTabSlug'	=> 'help',
 				'strTitle'		=> __('Help', 'yevent'),
+			),
+			array(
+				'strPageSlug'	=> 'yevent_payment',
+				'strTabSlug'	=> 'general_payment',
+				'strTitle'		=> __('General', 'yevent'),
 			),				
 			array()
 		);			
@@ -77,6 +91,18 @@ class yEventAdmin extends AdminPageFramework {
 				'strTabSlug'		=> 'tickets',
 				'strTitle'			=> __('Ticket Options', 'yevent'),
 				'strDescription'	=> __('The options for tickets.', 'yevent'),
+				'numOrder'			=> 10,
+			),				
+			array()			
+		);
+
+		$this->addSettingSections(
+			array(
+				'strSectionID'		=> 'general_payment',
+				'strPageSlug'		=> 'yevent_payment',
+				'strTabSlug'		=> 'general_payment',
+				'strTitle'			=> __('General', 'yevent'),
+				'strDescription'	=> __('General options for payment.', 'yevent'),
 				'numOrder'			=> 10,
 			),				
 			array()			
@@ -137,7 +163,7 @@ class yEventAdmin extends AdminPageFramework {
 				'strFieldID' => 'ticket_format',
 				'strSectionID' => 'tickets',
 				'strTitle' => __( 'Ticket Number Format', 'yevent' ),
-				'strDescription' => __( 'This is multiple sets of drop down list.', 'admin-page-framework-demo' ) . ' <strong>Current:</strong> <span id="current-format">TT-EE-CC</span>',
+				'strDescription' => __( 'This is multiple sets of drop down list.', 'admin-page-framework-demo' ),
 				'strType' => 'select',
 				'vLabel' => array( 
 					array( 
@@ -214,9 +240,48 @@ class yEventAdmin extends AdminPageFramework {
 					'custom' => array( 'media_buttons' => false, 'tinymce' => false ),	
 				),
 				'vRows' => 10,
+			),
+			/*
+			 * Payment
+			 */
+			array( 
+				'strFieldID' => 'payment_currency',
+				'strSectionID' => 'general_payment',
+				'strTitle' => __( 'Default Currency', 'yevent' ),
+				'strDescription' => __( 'The default currency for the prices', 'yevent' ),
+				'strType' => 'select',
+				'vDefault' => 'NOK',
+				'vLabel' => apply_filters( 'yevent_currencies', $this->currencies() ),
+			),	
+			array(
+				'strFieldID' => 'payment_tax',
+				'strSectionID' => 'general_payment',
+				'strTitle' => __('Taxable', 'yevent'),
+				'strType' => 'radio',
+				'vLabel' => array( 
+					'tax' => __('Yes, all purchases are taxable.', 'yevent'),  
+					'notax' => __('No, purchases are not taxable.', 'yevent'),  
+				),
+				'vDefault' => 'tax',	
+				'numOrder' => 1,
+			),
+			array(
+				'strFieldID'		=> 'payment_tax_rate',
+				'strSectionID'		=> 'general_payment',
+				'strTitle'			=> __( 'Tax Rate/Ticket Fee', 'yevent' ),
+				'strDescription' 	=> __( 'The tax rate is added on top of the total order price.', 'yevent' ),
+				'strType'			=> 'size',
+				'vSizeUnits'		=> array(
+					'percent'	=> '%',
+					'curreny'	=> __('Selected Currency', 'yevent'),
+				),
+				'vDefault'			=> array( 'size' => 25, 'unit' => '%' ),
 			),	
 			array()
 		);
+		
+		// add gateway tabs
+		yEventGateway::initGateways();
 
 		$this->setFooterInfoRight('Powered by <a href="http://yevent.im">yEvent</a> and <a href="http://wordpress.org" target="_blank" title="WordPress '.$GLOBALS['wp_version'].'">WordPress</a>', false);
 		
@@ -224,6 +289,10 @@ class yEventAdmin extends AdminPageFramework {
     }
 		
 	public function do_yevent_settings() {
+		submit_button();
+	}
+		
+	public function do_yevent_payment() {
 		submit_button();
 	}
 	

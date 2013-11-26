@@ -44,9 +44,9 @@ if(!defined('PLUGIN_URL'))
 require_once( PLUGIN_PATH . '/classes/class.yevent.php'); // main plugin class
 require_once( PLUGIN_PATH . '/classes/class.ticket.php' ); // ticket handling
 require_once( PLUGIN_PATH . '/classes/class.events.php'); // event handling
-require_once( PLUGIN_PATH . '/classes/class.payment.php'); // payment handling
-require_once( PLUGIN_PATH . '/classes/class.backend.php'); // the backend
 require_once( PLUGIN_PATH . '/classes/class.adminpages.php' ); // the admin pages
+require_once( PLUGIN_PATH . '/classes/class.gateway.php'); // payment handling
+require_once( PLUGIN_PATH . '/classes/class.backend.php'); // the backend
 
 /**
  * Activation/deactivation of the plugin
