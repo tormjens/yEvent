@@ -48,11 +48,9 @@ class yEventAdmin extends AdminPageFramework {
 			array()
 		);			
 		
-		// Page style.
-		$this->showPageHeadingTabs( false );		// disables the page heading tabs by passing false.
+		$this->showPageHeadingTabs( false );
 		$this->setInPageTabTag( 'h2' );		
 		
-		// Add setting sections
 		$this->addSettingSections(
 			array(
 				'strSectionID'		=> 'general',
@@ -64,31 +62,120 @@ class yEventAdmin extends AdminPageFramework {
 			),				
 			array()			
 		);
+
+		$this->addSettingSections(
+			array(
+				'strSectionID'		=> 'tickets',
+				'strPageSlug'		=> 'yevent_settings',
+				'strTabSlug'		=> 'tickets',
+				'strTitle'			=> __('Ticket Options', 'yevent'),
+				'strDescription'	=> __('The options for tickets.', 'yevent'),
+				'numOrder'			=> 10,
+			),				
+			array()			
+		);
 		
-		// Add setting fields
 		$this->addSettingFields(
-			array(	// Single text field
+			array(	
 				'strFieldID' => 'main_title',
 				'strSectionID' => 'general',
 				'strTitle' => __( 'Text', 'admin-page-framework-demo' ),
-				'strDescription' => __( 'Type something here.', 'admin-page-framework-demo' ),	// additional notes besides the form field
-				'strHelp' => __( 'This is a text field and typed text will be saved.', 'admin-page-framework-demo' ),
+				'strDescription' => __( 'Type something here.', 'admin-page-framework-demo' ),	
 				'strType' => 'text',
 				'numOrder' => 1,
 				'vDefault' => 123456,
 				'vSize' => 40,
-			),			
+			),
+			array(	
+				'strFieldID' => 'ticket_slug',
+				'strSectionID' => 'tickets',
+				'strTitle' => __( 'Slug', 'yevent' ),
+				'strDescription' => __( 'The slug for the ticket.', 'yevent' ),
+				'strType' => 'text',
+				'numOrder' => 1,
+				'vDefault' => _x('ticket', 'Ticket Slug', 'yevent'),
+				'vSize' => 20,
+			),
+			array( 
+				'strFieldID' => 'ticket_scan',
+				'strSectionID' => 'tickets',
+				'strTitle' => __( 'Scan Type', 'yevent' ),
+				'strDescription' => __( 'The type of scanning you want for your tickets.', 'yevent' ),
+				'strType' => 'select',
+				'vDefault' => 2,
+				'vLabel' => array( 
+					'barcode' => __('Barcode', 'yevent'),
+					'qr' => __('QR Code', 'yevent'),
+					'ticket' => __('Ticket Number', 'yevent'),
+				)
+			),
+			array(	// Drop-down Lists with Mixed Types
+				'strFieldID' => 'ticket_format',
+				'strSectionID' => 'tickets',
+				'strTitle' => __( 'Ticket Number Format', 'yevent' ),
+				'strDescription' => __( 'This is multiple sets of drop down list.', 'admin-page-framework-demo' ) . ' <strong>Current:</strong> <span id="current-format">TT-EE-CC</span>',
+				'strType' => 'select',
+				'vLabel' => array( 
+					array( 
+						'ticket_id' => __('Ticket ID', 'yevent'),
+						'event_id' => __('Event ID', 'yevent'),
+						'order_date' => __('Order Date (YYYYMMDD)', 'yevent'),
+						'currency_code' => __('Currency Code', 'yevent'),
+						'none' => __('None', 'yevent'),
+					),
+					array( 
+						'ticket_id' => __('Ticket ID', 'yevent'),
+						'event_id' => __('Event ID', 'yevent'),
+						'order_date' => __('Order Date (YYYYMMDD)', 'yevent'),
+						'currency_code' => __('Currency Code', 'yevent'),
+						'none' => __('None', 'yevent'),
+					),
+					array( 
+						'ticket_id' => __('Ticket ID', 'yevent'),
+						'event_id' => __('Event ID', 'yevent'),
+						'order_date' => __('Order Date (YYYYMMDD)', 'yevent'),
+						'currency_code' => __('Currency Code', 'yevent'),
+						'none' => __('None', 'yevent'),
+					),
+				),
+				'vSize' => array(
+					1,
+					1,
+					1,
+				),
+				'vDefault' => array(
+					'ticket_id',
+					'event_id',
+					'currency_code'
+				),
+				'vMultiple' => array(
+					false,
+					false,
+					false,
+				),
+			),
+			array(	// Single Drop-down List with Multiple Options
+				'strFieldID' => 'ticket_fields',
+				'strSectionID' => 'tickets',
+				'strTitle' => __( 'Ticket Fields', 'yevent' ),
+				'strDescription' => __( 'The fields you want to include in each ticket.', 'yevent' ),
+				'strType' => 'select',
+				'vMultiple' => true,
+				'vDefault' => 2,
+				'vSize' => 10,
+				'vWidth' => '200px',
+				'vLabel' => array( 
+					'ticket_name' => __('Name', 'yevent'), 
+					'ticket_price' => __('Price', 'yevent'), 
+					'ticket_email' => __('Email', 'yevent'), 
+					'ticket_number' => __('Ticket Number', 'yevent'), 
+					'event_name' => __('Event Name', 'yevent'), 
+					'event_venue' => __('Event Venue', 'yevent'), 
+					'event_date' => __('Event Date', 'yevent'), 
+					'event_time' => __('Event Time', 'yevent'), 
+				)
+			),
 			array()
-		);
-		
- 		$this->addLinkToPluginDescription( 
-			"<a href='http://www.google.com'>Google</a>",
-			"<a href='http://www.yahoo.com'>Yahoo!</a>",
-			"<a href='http://en.michaeluno.jp'>miunosoft</a>",
-			"<a href='https://github.com/michaeluno/admin-page-framework' title='Contribute to the GitHub repository!' >Repository</a>"
-		);
-		$this->addLinkToPluginTitle(
-			"<a href='http://www.wordpress.org'>WordPress</a>"
 		);
 
 		$this->setFooterInfoRight('Powered by <a href="http://yevent.im">yEvent</a> and <a href="http://wordpress.org" target="_blank" title="WordPress '.$GLOBALS['wp_version'].'">WordPress</a>', false);
@@ -96,74 +183,34 @@ class yEventAdmin extends AdminPageFramework {
 		
     }
 		
-	/*
-	 * First Page
-	 * */
-	public function do_first_page() {
+	public function do_yevent_settings() {
 		submit_button();
 	}
 	
 	/*
 	 * Validation Callbacks
 	 * */
-	public function validation_first_page_verification( $arrInput, $arrOldPageOptions ) {	// valication_ + page slug + _ + tab slug
+	public function validation_yevent_settings( $arrInput, $arrOldPageOptions ) {	
 				
-		// Set a flag.
 		$fVerified = true;
 		
-		// We store values that have an error in an array and pass it to the setFieldErrors() method.
-		// It internally stores the error array in a temporary area of the database called transient.
-		// The used name of the transient is a md5 hash of 'instantiated class name' + '_' + 'page slug'. 
-		// The library class will search for this transient when it renders the form fields 
-		// and if it is found, it will display the error message set in the field array. 
 		$arrErrors = array();
 		
-		// Check if the submitted value meets your criteria. As an example, here a numeric value is expected.
-		if ( isset( $arrInput['first_page']['verification']['verify_text_field'] ) && ! is_numeric( $arrInput['first_page']['verification']['verify_text_field'] ) ) {
+		if ( empty( $arrInput['yevent_settings']['tickets']['ticket_slug'] )  ) {
 			
-			// Start with the section key in $arrErrors, not the key of page slug.
-			$arrErrors['verification']['verify_text_field'] = 'The value must be numeric: ' . $arrInput['first_page']['verification']['verify_text_field'];	
+			$arrErrors['tickets']['ticket_slug'] = __('Ticket slug can not be empty.', 'yevent');	
 			$fVerified = false;
 			
 		}
 		
-		// An invalid value is found.
 		if ( ! $fVerified ) {
 		
-			// Set the error array for the input fields.
 			$this->setFieldErrors( $arrErrors );		
-			$this->setSettingNotice( 'There was an error in your input.' );
+			$this->setSettingNotice( __('There was an error validation your inputs.', 'yevent') );
 			return $arrOldPageOptions;
 			
 		}
 				
-		return $arrInput;
-		
-	}
-	public function validation_first_page_files( $arrInput, $arrOldPageOptions ) {	// validation_ + page slug + _ + tab slug
-
-		// Display the uploaded file information.
-		$arrFileErrors = array();
-		$arrFileErrors[] = $_FILES[ $this->oProps->strOptionKey ]['error']['first_page']['file_uploads']['file_single'];
-		$arrFileErrors[] = $_FILES[ $this->oProps->strOptionKey ]['error']['first_page']['file_uploads']['file_multiple'][0];
-		$arrFileErrors[] = $_FILES[ $this->oProps->strOptionKey ]['error']['first_page']['file_uploads']['file_multiple'][1];
-		$arrFileErrors[] = $_FILES[ $this->oProps->strOptionKey ]['error']['first_page']['file_uploads']['file_multiple'][2];
-		foreach( $_FILES[ $this->oProps->strOptionKey ]['error']['first_page']['file_uploads']['file_repeatable'] as $arrFile )
-			$arrFileErrors[] = $arrFile;
-			
-		if ( in_array( 0, $arrFileErrors ) ) 
-			$this->setSettingNotice( '<h3>File(s) Uploaded</h3>' . $this->oDebug->getArray( $_FILES ), 'updated' );
-		
-		return $arrInput;
-		
-	}
-	
-	public function validation_APF_Demo( $arrInput, $arrOldOptions ) {
-		
-		// If the delete options button is pressed, return an empty array that will delete the entire options stored in the database.
-		if ( isset( $_POST[ $this->oProps->strOptionKey ]['second_page']['submit_buttons_confirm']['submit_delete_options_confirmation'] ) ) 
-			return array();
-			
 		return $arrInput;
 		
 	}
