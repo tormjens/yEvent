@@ -25,7 +25,7 @@ class yEventAdmin extends AdminPageFramework {
 				'strPageSlug' => 'yevent_payment',
 				'strScreenIcon' => 'options-general',
 				'strCapability' => 'yevent_manage',
-				'numOrder' => 1,
+				'numOrder' => 2,
 			)
 		);
 				
@@ -83,6 +83,9 @@ class yEventAdmin extends AdminPageFramework {
 		);
 		
 		$this->addSettingFields(
+			/*
+			 * General Settings
+			 */
 			array(	
 				'strFieldID' => 'main_title',
 				'strSectionID' => 'general',
@@ -92,6 +95,21 @@ class yEventAdmin extends AdminPageFramework {
 				'numOrder' => 1,
 				'vDefault' => 123456,
 				'vSize' => 40,
+			),	
+			/*
+			 * Tickets
+			 */		
+			array(
+				'strFieldID' => 'ticket_register',
+				'strSectionID' => 'tickets',
+				'strTitle' => __('Users must register', 'yevent'),
+				'strType' => 'radio',
+				'vLabel' => array( 
+					'registered' => __('Yes, only registered users can purchase tickets.', 'yevent'),  
+					'all' => __('No, anyone can purchase tickets.', 'yevent'),  
+				),
+				'vDefault' => 'all',	
+				'numOrder' => 1,
 			),
 			array(	
 				'strFieldID' => 'ticket_slug',
@@ -99,7 +117,6 @@ class yEventAdmin extends AdminPageFramework {
 				'strTitle' => __( 'Slug', 'yevent' ),
 				'strDescription' => __( 'The slug for the ticket.', 'yevent' ),
 				'strType' => 'text',
-				'numOrder' => 1,
 				'vDefault' => _x('ticket', 'Ticket Slug', 'yevent'),
 				'vSize' => 20,
 			),
@@ -116,7 +133,7 @@ class yEventAdmin extends AdminPageFramework {
 					'ticket' => __('Ticket Number', 'yevent'),
 				)
 			),
-			array(	// Drop-down Lists with Mixed Types
+			array(
 				'strFieldID' => 'ticket_format',
 				'strSectionID' => 'tickets',
 				'strTitle' => __( 'Ticket Number Format', 'yevent' ),
